@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dot Curtain</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body id="body">
+        <!-- header -->
+        <header>
+            <h1>Dot Curtain</h1>
+            <p>
+                <var>Design & Developed By <a target="_blank" href="https://kawsarbinsiraj.github.io/">Kawsar Bin Siraj</a> </var>
+            </p>
+        </header>
+        <!--/ header -->
+
+        <!-- grid -->
+        <div id="grid"></div>
+        <!--/ grid -->
+
+        <!-- controler -->
+        <div id="controler">
+            <div class="group">
+                <p>Dot Count : <span id="output-1">4</span></p>
+                <input type="range" min="2" max="10" value="4" id="range-slider" />
+            </div>
+        </div>
+        <!--/ controler -->
+
+        <script type="text/javascript">
+            function create(value) {
+                document.getElementById("grid").innerHTML = "";
+                document.getElementById("output-1").innerHTML = value;
+                document.getElementById("body").style.setProperty("--grid-item", value);
+                for (let i = parseInt(value); i >= 1; i--) {
+                    let markup = "";
+                    for (let j = 1; j <= i; j++) markup += `<div>${i}</div>`;
+                    let div = document.createElement("div");
+                    div.innerHTML = markup;
+                    document.getElementById("grid").appendChild(div);
+                }
+            }
+            create(4);
+            document.getElementById("range-slider").oninput = function () {
+                create(this.value);
+            };
+        </script>
+    </body>
+</html>
